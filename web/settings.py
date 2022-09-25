@@ -177,9 +177,7 @@ class Test(Dev):
 
 
 class Prod(Common):
-    DEBUG = True
     SECRET_KEY = values.SecretValue()
-    #ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "0.0.0.0", "load-balance-mentoria-1704459434.us-east-1.elb.amazonaws.com"]
     ALLOWED_HOSTS = values.ListValue([], environ_name="ALLOWED_HOSTS")
     ALLOWED_HOSTS.extend((gethostname(), gethostbyname(gethostname())))
     DATABASES = {"default": dj_database_url.config(conn_max_age=600, ssl_require=False)}
